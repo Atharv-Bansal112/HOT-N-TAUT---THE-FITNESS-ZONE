@@ -9,74 +9,85 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-  :root {
+  :root{
     --bg:#0f1115; --surface:#171a21; --text:#eef2f7; --muted:#9aa3af;
-    --primary:#ffd54a; --primary-2:#ff9a1a; --ring:#2a2f3a; --ok:#22c55e; --danger:#ef4444;
-    --shadow: 0 10px 30px rgba(0,0,0,.35); --radius:16px; --gap:14px;
+    --primary:#ffd54a; --primary-2:#ff9a1a; --ring:#2a2f3a;
+    --ok:#22c55e; --danger:#ef4444; --shadow:0 10px 30px rgba(0,0,0,.35);
     --heading:"Inter", system-ui, Arial, sans-serif; --body:"Inter", system-ui, Arial, sans-serif; --mono:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-    --chart-grid:#2a3140; --chart-text:#cfd6e3;
   }
-  /* extra professional themes */
-  .theme-neon    { --bg:#07070a; --surface:#0c0f14; --text:#eaffff; --muted:#9fb0c3; --primary:#00f5ff; --primary-2:#8a2be2; --ring:#1c2230; --chart-text:#dff8ff; }
-  .theme-midnight{ --bg:#0b1020; --surface:#111a2d; --text:#e7edf8; --muted:#9bb0cc; --primary:#59aaff; --primary-2:#8bd3ff; --ring:#1a2a48; --chart-text:#d9e8ff; }
-  .theme-slate   { --bg:#0e1217; --surface:#151a22; --text:#edf1f7; --muted:#a3adba; --primary:#9b87f5; --primary-2:#7c6bf0; --ring:#2a3140; --chart-text:#e8ebf3; }
-  .theme-emerald { --bg:#06120e; --surface:#0c1b16; --text:#e6f6ef; --muted:#93b5a6; --primary:#22c55e; --primary-2:#16a34a; --ring:#153c2c; --chart-text:#dbffee; }
-  .theme-sunset  { --bg:#140c10; --surface:#1c0f15; --text:#fff4ec; --muted:#dfb7a4; --primary:#ff7a59; --primary-2:#ffae42; --ring:#3a1a1a; --chart-text:#ffe9db; }
-  .theme-ocean   { --bg:#07121a; --surface:#0d1b26; --text:#eaf6ff; --muted:#9fc0d7; --primary:#00b4d8; --primary-2:#48cae4; --ring:#153648; --chart-text:#daf1ff; }
-  .theme-carbon  { --bg:#0b0b0c; --surface:#141417; --text:#f0f1f5; --muted:#a8adbb; --primary:#d1d5db; --primary-2:#9ca3af; --ring:#2b2b31; --chart-text:#eaecef; }
+  .theme-neon{--bg:#07070a;--surface:#0c0f14;--text:#eaffff;--muted:#9fb0c3;--primary:#00f5ff;--primary-2:#8a2be2;--ring:#1c2230}
+  .theme-midnight{--bg:#0b1020;--surface:#111a2d;--text:#e7edf8;--muted:#9bb0cc;--primary:#59aaff;--primary-2:#8bd3ff;--ring:#1a2a48}
+  .theme-slate{--bg:#0e1217;--surface:#151a22;--text:#edf1f7;--muted:#a3adba;--primary:#9b87f5;--primary-2:#7c6bf0;--ring:#2a3140}
+  .theme-emerald{--bg:#06120e;--surface:#0c1b16;--text:#e6f6ef;--muted:#93b5a6;--primary:#22c55e;--primary-2:#16a34a;--ring:#153c2c}
+  .theme-sunset{--bg:#140c10;--surface:#1c0f15;--text:#fff4ec;--muted:#dfb7a4;--primary:#ff7a59;--primary-2:#ffae42;--ring:#3a1a1a}
+  .theme-ocean{--bg:#07121a;--surface:#0d1b26;--text:#eaf6ff;--muted:#9fc0d7;--primary:#00b4d8;--primary-2:#48cae4;--ring:#153648}
 
   *{box-sizing:border-box} html,body{height:100%}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);-webkit-tap-highlight-color:transparent;transition:background .25s,color .25s}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);-webkit-tap-highlight-color:transparent}
   h1,h2,h3{margin:0 0 8px;font-family:var(--heading)}
   p{margin:0 0 10px;color:var(--muted)}
+  a{color:var(--primary);text-decoration:none}
+
   .container{max-width:820px;margin:0 auto;padding:20px 14px 110px}
   .card{background:var(--surface);border:1px solid var(--ring);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
   .grid{display:grid;gap:14px}
   .grid.cols-2{grid-template-columns:1fr 1fr}
-  @media(max-width:680px){.grid.cols-2{grid-template-columns:1fr}}
-  .input,.select,.textarea{width:100%;background:#0b0e13;border:1px solid var(--ring);color:var(--text);padding:12px;border-radius:12px;outline:none;transition:border .2s,background .2s}
-  .input::placeholder,.textarea::placeholder{color:var(--muted)}
+  .grid.cols-3{grid-template-columns:1fr 1fr 1fr}
+  @media(max-width:760px){.grid.cols-2,.grid.cols-3{grid-template-columns:1fr}}
+
+  .input,.select,.textarea{
+    width:100%;background:#0b0e13;border:1px solid var(--ring);color:var(--text);
+    padding:12px;border-radius:12px;outline:none;transition:border .2s,background .2s
+  }
   .input:focus,.select:focus,.textarea:focus{border-color:var(--primary);background:#0a0d12}
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--ring);background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#051018;font-weight:700;cursor:pointer;transition:transform .08s,filter .2s;box-shadow:var(--shadow)}
-  .btn:active{transform:scale(.98)} .btn.ghost{background:transparent;color:var(--text)}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;
+    padding:12px 14px;border-radius:12px;border:1px solid var(--ring);
+    background:linear-gradient(135deg,var(--primary),var(--primary-2));
+    color:#051018;font-weight:700;cursor:pointer;transition:transform .08s,filter .2s;box-shadow:var(--shadow)
+  }
+  .btn:active{transform:scale(.98)}
+  .btn.ghost{background:transparent;color:var(--text)}
+  .btn.small{padding:8px 10px}
+
   .banner{position:relative;padding:18px;border-radius:16px;background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#061118;overflow:hidden}
 
-  /* typing/erasing + rotate */
-  .shine{background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.35) 50%,rgba(255,255,255,0) 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 2.25s ease-in-out infinite}
-  @keyframes shine{0%{background-position:200% 0}100%{background-position:-100% 0}}
-  .typewrap{display:inline-block;white-space:nowrap;border-right:2px solid currentColor;animation:blink 1s steps(1,end) infinite}
-  @keyframes blink{50%{border-color:transparent}}
+  .intro{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:var(--bg);z-index:9999}
+  .intro.hide{animation:fadeOut .7s ease forwards}
+  .intro-logo{font-weight:800;letter-spacing:.08em;font-size:22px;padding:12px 18px;border-radius:14px;border:1px solid var(--ring);color:var(--text);box-shadow:var(--shadow);animation:popIn .6s ease}
+  @keyframes popIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @keyframes fadeOut{to{opacity:0;visibility:hidden}}
 
-  /* app intro */
-  .intro{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:var(--bg);z-index:9999;animation:fadeOut .9s ease .75s forwards}
-  .intro-logo{font-weight:800;letter-spacing:.08em;font-size:22px;padding:12px 18px;border-radius:14px;border:1px solid var(--ring);color:var(--text);box-shadow:var(--shadow);transform:translateY(10px);opacity:0;animation:popIn .7s ease forwards}
-  @keyframes popIn{to{opacity:1;transform:none}}@keyframes fadeOut{to{opacity:0;visibility:hidden}}
+  .topbar{position:sticky;top:0;z-index:20;backdrop-filter:blur(10px);background:linear-gradient(0deg,rgba(0,0,0,0),rgba(0,0,0,.25));padding:10px 14px;display:flex;gap:10px;align-items:center;justify-content:space-between}
+  .brand{font-weight:800;letter-spacing:.06em;color:var(--text)}
+  .theme-select{width:auto;min-width:170px}
 
-  /* nav/taskbar */
   .taskbar{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;gap:8px;padding:10px;background:var(--surface);border-top:1px solid var(--ring)}
-  .tabbtn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 6px;gap:6px;border-radius:12px;border:1px solid var(--ring);background:#0b0f15;color:var(--muted);font-size:12px;transition:background .15s,color .15s,transform .08s}
+  .tabbtn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 6px;gap:6px;border-radius:12px;border:1px solid var(--ring);background:#0b0f15;color:var(--text);font-size:12px;transition:background .15s,color .15s,transform .08s}
+  .tabbtn .label{opacity:.95}
   .tabbtn.active{background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#061118;font-weight:700}
   .tabbtn:active{transform:translateY(1px)} .tabicon{font-size:18px}
   .view{display:none}.view.show{display:block}
-  .topbar{position:sticky;top:0;z-index:20;backdrop-filter:blur(10px);background:linear-gradient(0deg,rgba(0,0,0,0),rgba(0,0,0,.25));padding:10px 14px;display:flex;gap:10px;align-items:center;justify-content:space-between}
-  .brand{font-weight:800;letter-spacing:.06em;color:var(--text);opacity:.95}
-  .theme-select{width:auto;min-width:190px}
 
   .kpi{display:flex;align-items:center;justify-content:space-between;padding:14px;border-radius:14px;border:1px solid var(--ring);background:#0b0e13}
   .kpi .big{font-size:24px;font-weight:800;font-family:var(--mono)}
-  .fade{animation:fade .25s ease}
-  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 
   table{width:100%;border-collapse:collapse;font-size:14px}
   th,td{padding:10px;border-bottom:1px solid var(--ring)}
   th{text-align:left;color:var(--muted)}
+
+  /* typing area (name + quotes) */
+  .typewrap{display:flex;flex-direction:column;gap:6px}
+  .type-line{font-weight:800;font-size:20px;white-space:nowrap;overflow:hidden;border-right:2px solid var(--text)}
+  .type-sub{font-size:14px;color:var(--text)}
 </style>
 </head>
+
 <body class="theme-midnight">
-  <!-- intro -->
+  <!-- Intro -->
   <div id="intro" class="intro"><div class="intro-logo">HOT N TAUT — THE FITNESS ZONE</div></div>
 
-  <!-- top bar -->
+  <!-- Topbar -->
   <div class="topbar">
     <div class="brand">HOT N TAUT — THE FITNESS ZONE</div>
     <select id="themeSelect" class="select theme-select" aria-label="Theme">
@@ -86,7 +97,6 @@
       <option value="theme-emerald">Emerald</option>
       <option value="theme-sunset">Sunset</option>
       <option value="theme-ocean">Ocean</option>
-      <option value="theme-carbon">Carbon</option>
       <option value="">Classic</option>
     </select>
   </div>
@@ -94,9 +104,12 @@
   <!-- ===== Auth Views ===== -->
   <div id="loginView" class="container view show">
     <div class="grid">
-      <div class="card fade">
+      <div class="card">
         <h2>Member Login</h2>
-        <p>Welcome back! Train hard, recover smart.</p>
+        <div class="typewrap" style="margin:8px 0 6px">
+          <div id="typingName" class="type-line"></div>
+          <div id="typingQuote" class="type-line type-sub"></div>
+        </div>
         <input id="loginEmail" class="input" type="email" placeholder="Email">
         <input id="loginPassword" class="input" type="password" placeholder="Password">
         <button class="btn" id="btnLogin">Login</button>
@@ -112,8 +125,8 @@
   </div>
 
   <div id="signupView" class="container view">
-    <div class="card fade">
-      <h2>Sign Up</h2>
+    <div class="card">
+      <h2>Create Account</h2>
       <div class="grid cols-2">
         <input id="signupName" class="input" type="text" placeholder="Full name">
         <input id="signupEmail" class="input" type="email" placeholder="Email">
@@ -122,13 +135,13 @@
         <input id="signupPassword" class="input" type="password" placeholder="Password">
         <input id="signupCode" class="input" type="text" placeholder="Member code">
       </div>
-      <button class="btn" id="btnSignup">Create account</button>
+      <button class="btn" id="btnSignup">Sign Up</button>
       <div style="margin-top:8px"><button class="btn ghost" id="backToLogin1">Back to login</button></div>
     </div>
   </div>
 
   <div id="forgotView" class="container view">
-    <div class="card fade">
+    <div class="card">
       <h2>Reset Password</h2>
       <input id="fpEmail" class="input" type="email" placeholder="Email">
       <input id="fpCode" class="input" type="text" placeholder="Member code">
@@ -139,7 +152,7 @@
   </div>
 
   <div id="adminLoginView" class="container view">
-    <div class="card fade">
+    <div class="card">
       <h2>Admin Login</h2>
       <input id="adminUser" class="input" type="text" placeholder="Admin username">
       <input id="adminPass" class="input" type="password" placeholder="Admin password">
@@ -150,15 +163,15 @@
 
   <!-- ===== User App ===== -->
   <div id="userApp" class="container view">
-    <div class="banner fade">
-      <h2 class="shine"><span id="welcomeTyped" class="typewrap"></span></h2>
-      <p><span id="quoteTyped" class="typewrap"></span></p>
+    <div class="banner">
+      <h2 id="welcomeRotating" style="font-weight:800"></h2>
+      <p id="welcomeQuote" style="color:#061118;font-weight:600"></p>
     </div>
 
     <!-- Dashboard -->
     <div id="dashboardTab" class="view show">
       <div class="grid cols-2">
-        <div class="card kpi"><div><div style="font-weight:700">Steps Today</div><p>Keep it moving.</p></div><div class="big" id="stepsToday">0</div></div>
+        <div class="card kpi"><div><div style="font-weight:700">Steps Today</div><p>Keep moving.</p></div><div class="big" id="stepsToday">0</div></div>
         <div class="card kpi"><div><div style="font-weight:700">Calories Burned</div><p id="calBlurb">Estimated</p></div><div class="big" id="caloriesToday">0</div></div>
         <div class="card kpi"><div><div style="font-weight:700">Workout Time</div><p>Today</p></div><div class="big" id="timeToday">0</div></div>
         <div class="card kpi"><div><div style="font-weight:700">Active Streak</div><p>Days</p></div><div class="big" id="streakDays">0</div></div>
@@ -167,31 +180,32 @@
 
     <!-- Strength -->
     <div id="strengthTab" class="view">
-      <div class="card fade">
+      <div class="card">
         <h2>Strength</h2>
-        <p>Choose a template to start a session.</p>
-        <div class="grid">
+        <p>Start a template or add your own exercises.</p>
+        <div class="grid cols-3" id="strengthTemplates">
+          <!-- Preloaded templates -->
           <div class="card">
-            <h3>Push (Chest/Shoulders/Triceps)</h3>
+            <h3>Push</h3>
             <ul>
               <li>Barbell Bench — 4×6–8</li>
               <li>Incline DB Press — 3×8–10</li>
               <li>Overhead Press — 3×6–8</li>
-              <li>Lateral Raises — 3×12–15</li>
+              <li>Lateral Raise — 3×12–15</li>
               <li>Triceps Pushdown — 3×10–12</li>
             </ul>
-            <button class="btn" onclick="startStrength('Push')">Start Push Session</button>
+            <button class="btn small" onclick="startStrength('Push')">Start Push</button>
           </div>
           <div class="card">
-            <h3>Pull (Back/Biceps)</h3>
+            <h3>Pull</h3>
             <ul>
               <li>Deadlift — 3×3–5</li>
               <li>Lat Pulldown — 4×8–10</li>
               <li>Seated Row — 3×8–10</li>
-              <li>Face Pulls — 3×12–15</li>
+              <li>Face Pull — 3×12–15</li>
               <li>DB Curl — 3×10–12</li>
             </ul>
-            <button class="btn" onclick="startStrength('Pull')">Start Pull Session</button>
+            <button class="btn small" onclick="startStrength('Pull')">Start Pull</button>
           </div>
           <div class="card">
             <h3>Legs</h3>
@@ -202,37 +216,62 @@
               <li>Leg Curl — 3×10–12</li>
               <li>Calf Raise — 4×12–15</li>
             </ul>
-            <button class="btn" onclick="startStrength('Legs')">Start Legs Session</button>
+            <button class="btn small" onclick="startStrength('Legs')">Start Legs</button>
           </div>
         </div>
-        <div id="strengthActive" style="margin-top:10px"></div>
+
+        <!-- Admin-prescribed workout plan appears here -->
+        <div class="card" style="margin-top:10px">
+          <h3>Coach Plan</h3>
+          <p id="coachPlanNote">Your coach (admin) can assign workouts. They’ll appear below.</p>
+          <div id="coachPlan"></div>
+        </div>
+
+        <!-- User custom exercise -->
+        <div class="card" style="margin-top:10px">
+          <h3>Add Your Exercise</h3>
+          <div class="grid cols-3">
+            <input id="uxName" class="input" placeholder="Exercise name">
+            <input id="uxSets" class="input" type="number" placeholder="Sets">
+            <input id="uxReps" class="input" type="text" placeholder="Reps e.g. 8-10">
+          </div>
+          <button class="btn small" onclick="addUserExercise()">Add to My Library</button>
+          <div id="userExercises" style="margin-top:8px"></div>
+        </div>
+
+        <div id="strengthActive" style="margin-top:12px"></div>
       </div>
     </div>
 
     <!-- Cardio / Tracker -->
     <div id="cardioTab" class="view">
-      <div class="card fade">
-        <h2>Cardio & Tracker</h2>
+      <div class="card">
+        <h2>Cardio & Step Tracker</h2>
         <div class="grid cols-2">
           <div class="card">
             <h3>Step Tracker</h3>
             <p id="sensorStatus">Sensor: not started</p>
-            <div class="grid cols-2">
-              <button class="btn" onclick="startStepCounter()">Start</button>
-              <button class="btn ghost" onclick="stopStepCounter()">Stop</button>
+            <div class="grid cols-3">
+              <button class="btn small" onclick="initPedometer()">Enable Sensor</button>
+              <button class="btn small" onclick="startStepCounter()">Start</button>
+              <button class="btn small ghost" onclick="stopStepCounter()">Stop</button>
+            </div>
+            <div style="margin-top:8px">
+              <label>Sensitivity</label>
+              <input id="stepSensitivity" class="input" type="range" min="0.8" max="3" step="0.1" value="1.4" oninput="updateSensitivity(this.value)">
             </div>
             <div class="kpi" style="margin-top:10px"><div>Steps</div><div class="big" id="stepCount">0</div></div>
-            <canvas id="stepsChart" height="180" style="margin-top:12px"></canvas>
+            <canvas id="stepsChart" height="170" style="margin-top:12px"></canvas>
           </div>
           <div class="card">
             <h3>Cardio Workouts</h3>
-            <div class="grid cols-2">
-              <button class="btn" onclick="startCardio('Treadmill')">Treadmill</button>
-              <button class="btn" onclick="startCardio('Cycling')">Cycling</button>
-              <button class="btn" onclick="startCardio('Cross Trainer')">Cross Trainer</button>
-              <button class="btn ghost" onclick="stopCardio()">Finish</button>
+            <div class="grid cols-3">
+              <button class="btn small" onclick="startCardio('Treadmill')">Treadmill</button>
+              <button class="btn small" onclick="startCardio('Cycling')">Cycling</button>
+              <button class="btn small" onclick="startCardio('Cross Trainer')">Cross Trainer</button>
             </div>
-            <div id="activeWorkout" style="margin-top:10px"></div>
+            <div style="margin-top:6px"><button class="btn small ghost" onclick="stopCardio()">Finish</button></div>
+            <div id="activeWorkout" style="margin-top:8px"></div>
             <table id="cardioTable" style="margin-top:10px">
               <thead><tr><th>When</th><th>Type</th><th>Duration</th><th>Kcal</th></tr></thead>
               <tbody></tbody>
@@ -244,23 +283,27 @@
 
     <!-- Meals -->
     <div id="mealsTab" class="view">
-      <div class="card fade"><h2>Meals</h2><p id="dietPlan">Personalized diet plan (admin-editable) will show here.</p></div>
+      <div class="card">
+        <h2>Meals (Weekly)</h2>
+        <p>Your coach updates this. It refreshes live.</p>
+        <div id="dietPlan"></div>
+      </div>
     </div>
 
     <!-- Progress -->
     <div id="progressTab" class="view">
-      <div class="card fade">
+      <div class="card">
         <h2>Progress</h2>
         <div class="grid cols-2">
           <div class="card">
-            <h3>Body Measurements</h3>
+            <h3>Add Body Measurements</h3>
             <div class="grid cols-2">
               <input id="mWeight" class="input" type="number" step="0.1" placeholder="Weight (kg)">
               <input id="mBF" class="input" type="number" step="0.1" placeholder="Body Fat %">
               <input id="mChest" class="input" type="number" step="0.1" placeholder="Chest (cm)">
               <input id="mWaist" class="input" type="number" step="0.1" placeholder="Waist (cm)">
             </div>
-            <button class="btn" onclick="addMeasurement()">Add Measurement</button>
+            <button class="btn small" onclick="addMeasurement()">Add Measurement</button>
             <table id="measureTable" style="margin-top:10px">
               <thead><tr><th>Date</th><th>W (kg)</th><th>BF%</th><th>Chest</th><th>Waist</th></tr></thead>
               <tbody></tbody>
@@ -268,7 +311,7 @@
           </div>
           <div class="card">
             <h3>Measurements Graph</h3>
-            <canvas id="measureChart" height="200"></canvas>
+            <canvas id="measureChart" height="210"></canvas>
           </div>
         </div>
       </div>
@@ -276,33 +319,32 @@
 
     <!-- Profile -->
     <div id="profileTab" class="view">
-      <div class="card fade">
+      <div class="card">
         <h2>Profile</h2>
         <div id="profileInfo"></div>
-        <div style="margin-top:12px" class="grid cols-2">
-          <button class="btn" id="btnLogout">Logout</button>
-          <button class="btn ghost" id="btnRefreshProfile">Refresh</button>
-        </div>
+        <div style="margin-top:8px"><button class="btn ghost" onclick="logout()">Logout</button></div>
       </div>
     </div>
   </div>
 
   <!-- ===== Admin Panel ===== -->
   <div id="adminPanel" class="container view">
-    <div class="banner fade">
+    <div class="banner">
       <h2>Admin Panel</h2>
-      <p>HOT N TAUT — Manage members & plans</p>
+      <p>Manage members, diet plans, workouts</p>
     </div>
 
     <div class="card">
       <h3>Generate Member Code</h3>
-      <div class="grid cols-2">
+      <div class="grid cols-3">
         <input id="memberNameInput" class="input" type="text" placeholder="Member Name">
-        <button class="btn" id="btnGenCode">Generate Code</button>
+        <button class="btn small" id="btnGenCode">Generate Code</button>
+        <button class="btn small ghost" id="btnAdminLogout">Logout</button>
       </div>
-      <div class="grid cols-2" style="margin-top:10px">
-        <input id="generatedCode" class="input" type="text" placeholder="Generated code will appear here" readonly>
-        <button class="btn ghost" id="btnCopyCode">Copy</button>
+      <div class="grid cols-3" style="margin-top:8px">
+        <input id="generatedCode" class="input" type="text" readonly placeholder="Code will appear here">
+        <button class="btn small" id="btnCopyCode">Copy</button>
+        <div></div>
       </div>
       <p id="lastCode" style="margin-top:6px"></p>
     </div>
@@ -314,9 +356,23 @@
 
     <div class="card" id="editMemberCard" style="display:none;">
       <h3 id="editMemberTitle">Edit Member</h3>
-      <textarea id="dietPlanInput" class="textarea" rows="3" placeholder="Enter Diet Plan"></textarea>
-      <textarea id="workoutPlanInput" class="textarea" rows="3" placeholder="Enter Workout Plan"></textarea>
-      <button class="btn" id="btnSavePlans">Save Plans</button>
+      <div class="grid cols-2">
+        <!-- Weekly diet plan -->
+        <div class="card">
+          <h4>Diet (Weekly: Morning / Afternoon / Evening)</h4>
+          <div id="dietWeek" class="grid">
+            <!-- generated by JS for Mon..Sun -->
+          </div>
+          <button class="btn small" id="btnSaveDiet">Save Diet</button>
+        </div>
+        <!-- Workout plan -->
+        <div class="card">
+          <h4>Workout Plan (Coach)</h4>
+          <textarea id="workoutPlanInput" class="textarea" rows="8" placeholder="e.g. Mon: Push\nTue: Pull\nWed: Legs"></textarea>
+          <button class="btn small" id="btnSaveWorkoutPlan">Save Workout Plan</button>
+        </div>
+      </div>
+
       <div style="margin-top:12px">
         <h4>Recent Sessions</h4>
         <table id="adminSessionsTable">
@@ -327,7 +383,6 @@
           <thead><tr><th>Date</th><th>W</th><th>BF%</th><th>Chest</th><th>Waist</th></tr></thead><tbody></tbody>
         </table>
       </div>
-      <div style="margin-top:10px"><button class="btn ghost" id="btnAdminLogout">Logout</button></div>
     </div>
   </div>
 
@@ -341,107 +396,119 @@
     <button class="tabbtn" data-tab="profile"><span class="tabicon">👤</span><span class="label">Profile</span></button>
   </nav>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="module">
 /* ===========================
-   FIREBASE BOOTSTRAP
+   FIREBASE
 =========================== */
 import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, doc, getDoc, setDoc, updateDoc, collection, getDocs, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, updateDoc, collection, getDocs, addDoc, serverTimestamp, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-// 🔐 TODO: paste your Firebase config
+// 🔧 REPLACE WITH YOUR FIREBASE CONFIG
 const firebaseConfig = {
-apiKey: "AIzaSyDIxW0xkJSdRduI8Z2k0z5TpCx8WvQDmNI",
+  apiKey: "AIzaSyDIxW0xkJSdRduI8Z2k0z5TpCx8WvQDmNI",
   authDomain: "hot-n-taut---the-fitness-zone.firebaseapp.com",
   projectId: "hot-n-taut---the-fitness-zone",
   storageBucket: "hot-n-taut---the-fitness-zone.firebasestorage.app",
   messagingSenderId: "251132245367",
   appId: "1:251132245367:web:82ed29aa2d214ccf88dd72",
-  measurementId: "G-0H86K80WD8"
+  measurementId: "G-0H86K80WD8"
 };
-let app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 /* ===========================
    UTIL + THEME + NAV
 =========================== */
 const $ = (id)=>document.getElementById(id);
-const show = (id)=>{ document.querySelectorAll(".view").forEach(v=>v.classList.remove("show")); $(id)?.classList.add("show"); };
-const showUserApp = ()=>{ show("userApp"); $("taskbar").style.display="flex"; switchTab("dashboard"); bootTypedHeaders(); hydrateAfterLogin(); };
-const showLogin = ()=>{ show("loginView"); $("taskbar").style.display="none"; clearAuthInputs(); };
-
-window.addEventListener("load", ()=> setTimeout(()=>{ const i=$("intro"); if(i) i.style.display="none"; },1200));
-
-const themeSelect = $("themeSelect");
-function applyTheme(val){
-  document.body.className = val || "";
-  localStorage.setItem("hnt_theme", val || "");
-  // refresh chart defaults on theme change
-  setTimeout(()=>{ initChartsTheme(); refreshCharts(); }, 60);
+const views = ["loginView","signupView","forgotView","adminLoginView","userApp","adminPanel"];
+function show(id){
+  views.forEach(v=>$(v)?.classList.remove("show")); $(id)?.classList.add("show");
+  if(id==="userApp"){ $("taskbar").style.display="flex"; switchTab("dashboard"); }
+  else { $("taskbar").style.display="none"; }
 }
-themeSelect.addEventListener("change",(e)=>applyTheme(e.target.value));
-(function bootTheme(){ const saved = localStorage.getItem("hnt_theme") || "theme-midnight"; themeSelect.value = saved; applyTheme(saved); })();
-
 function switchTab(tab){
-  ["dashboard","strength","cardio","meals","progress","profile","adminPanel"].forEach(t=>$(t+"Tab")?.classList.remove("show"));
+  ["dashboard","strength","cardio","meals","progress","profile"].forEach(t=>$(t+"Tab")?.classList.remove("show"));
   $(tab+"Tab")?.classList.add("show");
   document.querySelectorAll(".tabbtn").forEach(b=> b.classList.toggle("active", b.dataset.tab===tab));
 }
 document.querySelectorAll(".tabbtn").forEach(b=> b.addEventListener("click", ()=> switchTab(b.dataset.tab)));
 
+const themeSelect = $("themeSelect");
+function applyTheme(val){ document.body.className = val || ""; }
+themeSelect.addEventListener("change",(e)=>applyTheme(e.target.value));
+(function bootTheme(){ const saved = localStorage.getItem("hnt_theme") || "theme-midnight"; themeSelect.value = saved; applyTheme(saved); })();
+themeSelect.addEventListener("change", ()=> localStorage.setItem("hnt_theme", themeSelect.value));
+
+/* Intro hide after mount */
+window.addEventListener("load", ()=> setTimeout(()=>$("intro").classList.add("hide"), 900));
+
 /* ===========================
-   TYPING / ERASING ANIMATIONS
+   TYPING / ROTATING NAME + QUOTES
 =========================== */
-const quotes = [
-  "Consistency beats intensity.",
-  "Small steps, big results.",
-  "Form first. Always.",
-  "Fuel right. Recover hard.",
-  "Your only limit is you."
+const quoteList = [
+  "Stay consistent — progress stacks.",
+  "Form first. Weight later.",
+  "Small wins, big changes.",
+  "Discipline beats motivation.",
+  "Recovery fuels growth."
 ];
-let typeTimers = [];
-
-function typeErase(el, phrases, loopDelay=1400, speed=50){
-  let i=0, forward=true, pos=0;
-  function tick(){
-    const text = phrases[i];
-    if(forward){
-      pos++;
-      el.textContent = text.slice(0,pos);
-      if(pos===text.length){ forward=false; typeTimers.push(setTimeout(tick, loopDelay)); return; }
-    }else{
-      pos--;
-      el.textContent = text.slice(0,pos);
-      if(pos===0){ forward=true; i=(i+1)%phrases.length; }
-    }
-    typeTimers.push(setTimeout(tick, forward?speed:speed/1.25));
-  }
-  tick();
+let typeTimer = null;
+function typeWriter(el, text, speed=40){
+  return new Promise(res=>{
+    el.textContent = "";
+    let i=0;
+    clearInterval(typeTimer);
+    typeTimer = setInterval(()=>{
+      el.textContent += text.charAt(i++);
+      if(i>=text.length){ clearInterval(typeTimer); res(); }
+    }, speed);
+  });
 }
-function clearTypeTimers(){ typeTimers.forEach(t=>clearTimeout(t)); typeTimers=[]; }
-function bootTypedHeaders(){
-  clearTypeTimers();
-  const uName = currentUser?.name || "Athlete";
-  typeErase($("welcomeTyped"), [
-    `Welcome, ${uName}`,
-    `Welcome, ${uName} 👋`,
-    `Welcome, ${uName} 🔥`
-  ], 900, 40);
-  typeErase($("quoteTyped"), quotes, 1200, 38);
+async function playLoginTyping(){
+  const nameEl = $("typingName");
+  const quoteEl = $("typingQuote");
+  const demoName = "Welcome to HOT N TAUT";
+  while($("loginView").classList.contains("show")){
+    await typeWriter(nameEl, demoName, 28);
+    const q = quoteList[Math.floor(Math.random()*quoteList.length)];
+    await typeWriter(quoteEl, q, 22);
+    await new Promise(r=>setTimeout(r, 900));
+    // erase
+    nameEl.textContent=""; quoteEl.textContent="";
+  }
+}
+async function setWelcomeForUser(name){
+  const el = $("welcomeRotating");
+  const sub = $("welcomeQuote");
+  let idx=0;
+  async function loop(){
+    if(!$("userApp").classList.contains("show")) return;
+    el.textContent = "";
+    await typeWriter(el, `Welcome, ${name}`, 26);
+    const q = quoteList[idx++ % quoteList.length];
+    sub.textContent = "";
+    await typeWriter(sub, q, 20);
+    setTimeout(loop, 1400);
+  }
+  loop();
 }
 
 /* ===========================
-   AUTH (Firestore-backed)
+   SESSION (Email only in memory)
 =========================== */
-const ADMIN_USER = "admin";      // change if needed
-const ADMIN_PASS = "admin123";
+let currentEmail = null; // keeps user logged-in until logout
 
-let currentUser = null; // in-memory (no localStorage persistence)
+/* ===========================
+   AUTH (users collection)
+=========================== */
+const ADMIN_USER = "admin";
+const ADMIN_PASS = "admin123";
 
 $("toSignup").onclick = ()=> show("signupView");
 $("toForgot").onclick = ()=> show("forgotView");
 $("toAdminLogin").onclick = ()=> show("adminLoginView");
-$("backToLogin1").onclick = $("backToLogin2").onclick = $("backToLogin3").onclick = showLogin;
+$("backToLogin1").onclick = $("backToLogin2").onclick = $("backToLogin3").onclick = ()=> show("loginView");
 
 $("btnSignup").onclick = async ()=>{
   const name = $("signupName").value.trim();
@@ -451,31 +518,38 @@ $("btnSignup").onclick = async ()=>{
   if(!name||!email||!pass||!code) return alert("Fill all fields");
 
   const codedoc = await getDoc(doc(db,"codes",code));
-  if(!codedoc.exists()) return alert("Invalid code");
+  if(!codedoc.exists()) return alert("Invalid member code");
+
   const udoc = await getDoc(doc(db,"users",email));
   if(udoc.exists()) return alert("Email already registered");
 
-  await setDoc(doc(db,"users",email),{
-    name,email,pass,joinDate:new Date().toLocaleDateString(),diet:"",workout:""
-  });
-  await updateDoc(doc(db,"codes",code),{ used:true });
-
+  const user = {
+    name, email, pass,
+    joinDate: "", // admin can set true joining date later
+    streakStart: "", // for streak logic if needed later
+    workouts: [], // user library
+    theme: themeSelect.value || "theme-midnight"
+  };
+  await setDoc(doc(db,"users",email), user);
   alert("Account created! Please login.");
-  showLogin();
+  show("loginView");
 };
 
 $("btnLogin").onclick = async ()=>{
   const email = $("loginEmail").value.trim().toLowerCase();
   const pass  = $("loginPassword").value.trim();
-  if(!email||!pass) return alert("Enter email & password");
+  if(!email||!pass) return alert("Enter email and password");
 
-  const u = await getDoc(doc(db,"users",email));
-  if(!u.exists()) return alert("No account found");
-  const d = u.data();
-  if(d.pass !== pass) return alert("Wrong password");
+  const d = await getDoc(doc(db,"users",email));
+  if(!d.exists()) return alert("No account found");
+  const u = d.data();
+  if(u.pass !== pass) return alert("Wrong password");
 
-  currentUser = d;
-  showUserApp();
+  currentEmail = email;
+  applyTheme(u.theme || "theme-midnight");
+  themeSelect.value = u.theme || "theme-midnight";
+  await enterUserApp(u);
+  $("loginEmail").value = ""; $("loginPassword").value = "";
 };
 
 $("btnReset").onclick = async ()=>{
@@ -484,461 +558,489 @@ $("btnReset").onclick = async ()=>{
   const newPass = $("fpNewPass").value.trim();
   if(!email||!code||!newPass) return alert("Fill all fields");
 
-  const codeDoc = await getDoc(doc(db,"codes",code));
-  if(!codeDoc.exists()) return alert("Invalid code");
-
   const u = await getDoc(doc(db,"users",email));
   if(!u.exists()) return alert("No user found");
+  const cd = await getDoc(doc(db,"codes",code));
+  if(!cd.exists()) return alert("Invalid code");
 
-  await updateDoc(doc(db,"users",email),{ pass:newPass });
+  await updateDoc(doc(db,"users",email), { pass: newPass });
   alert("Password reset successful");
-  showLogin();
+  show("loginView");
 };
 
 $("btnAdminLogin").onclick = async ()=>{
   const u = $("adminUser").value.trim();
   const p = $("adminPass").value.trim();
   if(u===ADMIN_USER && p===ADMIN_PASS){
+    $("adminUser").value = ""; $("adminPass").value = "";
     show("adminPanel");
-    await renderMembers();
-  }else{
-    alert("Wrong admin credentials");
-  }
+    renderMembers();
+    buildDietWeekEditor();
+  } else alert("Wrong admin credentials");
 };
-
-$("btnLogout").onclick = ()=>{
-  currentUser = null;
-  showLogin();
-};
-
-$("btnRefreshProfile").onclick = ()=> hydrateProfile();
+$("btnAdminLogout").onclick = ()=>{ show("loginView"); };
 
 /* ===========================
-   DASHBOARD + PROFILE
+   ENTER USER APP
 =========================== */
-async function hydrateAfterLogin(){
-  await hydrateDashboard();
-  await hydrateMeals();
-  await hydrateProfile();
-  await initStepsChart();
-  await loadStepsThisWeek();
-  await loadCardioSessions();
-  await loadMeasurements();
+async function enterUserApp(user){
+  show("userApp");
+  setWelcomeForUser(user.name||"Athlete");
+  loadProfile(user);
+  hydrateDashboard();
+  initStepsChart();
+  loadStepsThisWeek();
+  loadDietLive();
+  loadCoachPlanLive();
+  loadCardioSessions();
+  loadUserExercises();
 }
+
+/* ===========================
+   DASHBOARD + STREAK
+=========================== */
 async function hydrateDashboard(){
-  if(!currentUser) return;
-  const tkey = todayKey();
-  const snap = await getDoc(doc(db,"users",currentUser.email,"dailySteps",tkey));
-  const stepsToday = snap.exists() ? (snap.data().steps||0) : 0;
-
+  if(!currentEmail) return;
+  const todayRef = doc(db,"users",currentEmail,"dailySteps",todayKey());
+  const snap = await getDoc(todayRef);
+  const stepsToday = snap.exists()? (snap.data().steps||0) : 0;
   setText("stepsToday", stepsToday);
-  // calories estimate (walking avg ~0.04–0.05 kcal/step). Use 0.045 for middle.
-  setText("caloriesToday", Math.round(stepsToday*0.045));
-  setText("timeToday", Math.round(stepsToday/110)); // ~110 steps/min
-  setText("streakDays", await computeStreak());
-}
-async function hydrateMeals(){
-  if(!currentUser) return;
-  const u = await getDoc(doc(db,"users",currentUser.email));
-  if(u.exists()) $("dietPlan").textContent = u.data().diet||"No plan yet.";
-}
-async function hydrateProfile(){
-  if(!currentUser) return;
-  const u = await getDoc(doc(db,"users",currentUser.email));
-  if(!u.exists()) return;
-  const d = u.data();
-  $("profileInfo").innerHTML = `
-    <p><b>Name:</b> ${d.name||"-"}</p>
-    <p><b>Email:</b> ${d.email||"-"}</p>
-    <p><b>Joined:</b> ${d.joinDate||"-"}</p>
-    <p><b>Workout Plan:</b> ${d.workout||"—"}</p>
-    <p><b>Diet Plan:</b> ${d.diet||"—"}</p>
-  `;
-}
+  setText("caloriesToday", Math.round(stepsToday*0.04)); // display number only
+  setText("timeToday", Math.round(stepsToday/110)); // minutes
 
-/* ===========================
-   STREAK
-=========================== */
-async function computeStreak(){
-  if(!currentUser) return 0;
-  let streak=0;
-  const now = new Date();
+  // streak: count consecutive days with steps > 0 ending today
+  let streak = 0;
   for(let i=0;i<30;i++){
-    const d = new Date(now); d.setDate(now.getDate()-i);
-    const key = ymd(d);
-    const s = await getDoc(doc(db,"users",currentUser.email,"dailySteps",key));
-    const steps = s.exists()? (s.data().steps||0) : 0;
-    if(steps>0) streak++; else break;
+    const d = dateOffset(-i);
+    const s = await getDoc(doc(db,"users",currentEmail,"dailySteps",keyOf(d)));
+    const v = s.exists()? (s.data().steps||0) : 0;
+    if(v>0) streak++; else break;
   }
-  return streak;
+  setText("streakDays", streak);
+}
+function setText(id, val){ const el=$(id); if(el) el.textContent = String(val); }
+
+/* ===========================
+   PROFILE
+=========================== */
+async function loadProfile(u){
+  const user = u || (await (await getDoc(doc(db,"users",currentEmail))).data());
+  const html = `
+    <div><b>Name:</b> ${user.name||"-"}</div>
+    <div><b>Email:</b> ${user.email||currentEmail}</div>
+    <div><b>Date of Joining:</b> ${user.joinDate||"— (to be set by admin)"}</div>
+  `;
+  $("profileInfo").innerHTML = html;
+}
+async function logout(){
+  currentEmail = null;
+  show("loginView");
 }
 
 /* ===========================
-   STRENGTH SESSIONS (simple timer)
+   STRENGTH (templates + user library + coach plan)
 =========================== */
-let strengthStart=null, strengthType=null, strengthTimer=null;
-window.startStrength = function(type){
-  strengthType=type; strengthStart=new Date();
+function startStrength(block){
   $("strengthActive").innerHTML = `
-    <div class="kpi"><div>Active: <b>${type}</b></div>
-    <div id="strengthElapsed" class="big">0s</div></div>
-    <div class="grid cols-2" style="margin-top:8px">
-      <button class="btn" onclick="finishStrength()">Finish</button>
-      <button class="btn ghost" onclick="cancelStrength()">Cancel</button>
+    <div class="card">
+      <h3>Active: ${block}</h3>
+      <p>Track sets & reps as you go.</p>
+      <button class="btn small" onclick="finishStrength('${block}')">Finish Session</button>
     </div>
   `;
-  strengthTimer && clearInterval(strengthTimer);
-  strengthTimer = setInterval(()=>{
-    const sec = Math.floor((Date.now()-strengthStart.getTime())/1000);
-    $("strengthElapsed").textContent = sec+"s";
-  },1000);
-};
-window.finishStrength = async function(){
-  if(!currentUser||!strengthStart) return;
-  const sec = Math.max(1, Math.floor((Date.now()-strengthStart.getTime())/1000));
-  const kcal = Math.round(sec/60 * 6); // rough compound avg
-  await addDoc(collection(db,"users",currentUser.email,"sessions"),{
-    type:`Strength (${strengthType})`, durationSec:sec, kcal,
-    startedAt: strengthStart.toISOString(), endedAt: new Date().toISOString(), createdAt: serverTimestamp()
+}
+async function finishStrength(block){
+  if(!currentEmail) return;
+  await addDoc(collection(db,"users",currentEmail,"sessions"),{
+    type:`Strength - ${block}`, durationSec: 1800, kcal: 200,
+    createdAt: serverTimestamp(), endedAt:new Date().toISOString()
   });
-  resetStrengthUI();
-  await hydrateDashboard(); await loadCardioSessions();
-};
-window.cancelStrength = function(){ resetStrengthUI(); };
-function resetStrengthUI(){ clearInterval(strengthTimer); strengthStart=null; strengthType=null; $("strengthActive").innerHTML=""; }
+  $("strengthActive").innerHTML = "";
+  alert("Strength session saved.");
+  hydrateDashboard();
+}
+async function addUserExercise(){
+  if(!currentEmail) return;
+  const name = $("uxName").value.trim();
+  const sets = Number($("uxSets").value||0);
+  const reps = $("uxReps").value.trim();
+  if(!name||!sets||!reps) return alert("Fill exercise, sets, reps.");
+  const ref = doc(db,"users",currentEmail);
+  const u = await getDoc(ref);
+  const arr = (u.data().workouts||[]);
+  arr.push({name,sets,reps});
+  await updateDoc(ref,{workouts:arr});
+  $("uxName").value="";$("uxSets").value="";$("uxReps").value="";
+  loadUserExercises();
+}
+async function loadUserExercises(){
+  if(!currentEmail) return;
+  const u = await getDoc(doc(db,"users",currentEmail));
+  const arr = (u.exists()? (u.data().workouts||[]) : []);
+  $("userExercises").innerHTML = arr.length? (
+    "<ul>"+arr.map(x=>`<li>${x.name} — ${x.sets}×${x.reps}</li>`).join("")+"</ul>"
+  ) : "<p>No custom exercises yet.</p>";
+}
+/* Coach plan (admin -> user) live */
+let coachPlanUnsub=null;
+function loadCoachPlanLive(){
+  if(coachPlanUnsub) coachPlanUnsub();
+  if(!currentEmail) return;
+  coachPlanUnsub = onSnapshot(doc(db,"users",currentEmail), (snap)=>{
+    if(!snap.exists()) return;
+    const plan = snap.data().coachPlan || "";
+    $("coachPlan").innerText = plan || "No plan yet.";
+  });
+}
 
 /* ===========================
-   CARDIO + STEP TRACKER
+   MEALS (weekly) live
 =========================== */
-let stepCount=0, stepTimer=null, motionHandler=null, lastPeak=0, accelBuffer=[];
-let cardioStart=null, cardioType=null, cardioTimer=null;
+let dietUnsub=null;
+function loadDietLive(){
+  if(dietUnsub) dietUnsub();
+  if(!currentEmail) return;
+  dietUnsub = onSnapshot(doc(db,"users",currentEmail), (snap)=>{
+    if(!snap.exists()) return;
+    const diet = snap.data().dietWeek || {};
+    $("dietPlan").innerHTML = renderDietWeek(diet);
+  });
+}
+function renderDietWeek(weekObj){
+  const days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+  return `
+    <table>
+      <thead><tr><th>Day</th><th>Morning</th><th>Afternoon</th><th>Evening</th></tr></thead>
+      <tbody>
+        ${days.map(d=>{
+          const v = weekObj[d]||{};
+          return `<tr><td>${d}</td><td>${v.morning||"-"}</td><td>${v.afternoon||"-"}</td><td>${v.evening||"-"}</td></tr>`;
+        }).join("")}
+      </tbody>
+    </table>
+  `;
+}
 
-function requestMotionPermissionIfNeeded(){
-  const status = $("sensorStatus");
-  if (typeof DeviceMotionEvent !== "undefined" && typeof DeviceMotionEvent.requestPermission === "function"){
-    DeviceMotionEvent.requestPermission().then(state=>{
-      if(state==="granted"){ status.textContent="Sensor: active"; startMotionListener(); }
-      else { status.textContent="Sensor: denied (using fallback)"; startFallbackSteps(); }
-    }).catch(()=>{ status.textContent="Sensor: denied (fallback)"; startFallbackSteps(); });
-  }else if (window.DeviceMotionEvent){
-    status.textContent="Sensor: active";
-    startMotionListener();
-  }else{
-    status.textContent="Sensor: unavailable (fallback)";
-    startFallbackSteps();
+/* ===========================
+   CARDIO + SESSIONS TABLE
+=========================== */
+let cardioStart=null, cardioType=null;
+function startCardio(type){
+  cardioStart = new Date(); cardioType = type;
+  $("activeWorkout").innerHTML = `<p>Active: <b>${type}</b> (tracking...)</p>`;
+}
+async function stopCardio(){
+  if(!currentEmail || !cardioStart || !cardioType) return;
+  const dur = Math.max(1, Math.floor((new Date()-cardioStart)/1000));
+  const kcal = Math.round(dur/60 * (cardioType==="Cycling" ? 7 : cardioType==="Cross Trainer" ? 8 : 6));
+  await addDoc(collection(db,"users",currentEmail,"sessions"),{
+    type: cardioType, durationSec: dur, kcal,
+    startedAt: cardioStart.toISOString(), endedAt: new Date().toISOString(),
+    createdAt: serverTimestamp()
+  });
+  $("activeWorkout").innerHTML = "";
+  cardioStart = null; cardioType = null;
+  loadCardioSessions();
+  hydrateDashboard();
+}
+async function loadCardioSessions(){
+  if(!currentEmail) return;
+  const snap = await getDocs(collection(db,"users",currentEmail,"sessions"));
+  const rows = [];
+  snap.forEach(d=>{
+    const s=d.data();
+    rows.push(`<tr><td>${(s.startedAt||"").slice(0,16).replace("T"," ")}</td><td>${s.type}</td><td>${Math.round((s.durationSec||0)/60)}m</td><td>${s.kcal||0}</td></tr>`);
+  });
+  $("cardioTable").querySelector("tbody").innerHTML = rows.reverse().join("");
+}
+
+/* ===========================
+   STEPS TRACKER (DeviceMotion)
+=========================== */
+let stepsChart, stepData=[0,0,0,0,0,0,0];
+let stepCount=0, stepTimer=null, motionOn=false, lastAccel=0, sensitivity=1.4;
+function updateSensitivity(v){ sensitivity = Number(v||1.4); }
+async function initPedometer(){
+  try{
+    if(typeof DeviceMotionEvent!=="undefined" && typeof DeviceMotionEvent.requestPermission==="function"){
+      const perm = await DeviceMotionEvent.requestPermission();
+      if(perm!=="granted"){ $("sensorStatus").textContent="Sensor: permission denied"; return; }
+    }
+    window.addEventListener("devicemotion", motionHandler);
+    motionOn = true;
+    $("sensorStatus").textContent="Sensor: enabled";
+  }catch(e){
+    $("sensorStatus").textContent="Sensor: not available";
   }
 }
-function startMotionListener(){
-  stopMotionListener();
-  accelBuffer=[]; lastPeak=0;
-  motionHandler = (e)=>{
-    const a = e.accelerationIncludingGravity || e.acceleration || {x:0,y:0,z:0};
-    const mag = Math.sqrt((a.x||0)**2 + (a.y||0)**2 + (a.z||0)**2);
-    accelBuffer.push({t:Date.now(), v:mag});
-    // keep last ~2s of data
-    const cutoff = Date.now()-2000;
-    while(accelBuffer.length && accelBuffer[0].t<cutoff) accelBuffer.shift();
-
-    // simple peak detect
-    const prev = accelBuffer[accelBuffer.length-2]?.v || 0;
-    const now  = mag;
-    const thr  = 11.2; // around earth g center with phone noise; tweak if needed
-    const dt   = Date.now()-lastPeak;
-    if(prev<thr && now>=thr && dt>300){ // >300ms between steps
-      lastPeak=Date.now();
-      registerStep();
-    }
-  };
-  window.addEventListener("devicemotion", motionHandler);
+function motionHandler(e){
+  if(!motionOn) return;
+  const a = e.accelerationIncludingGravity;
+  if(!a) return;
+  const mag = Math.sqrt((a.x||0)**2 + (a.y||0)**2 + (a.z||0)**2);
+  const peak = Math.abs(mag - lastAccel);
+  lastAccel = mag;
+  if(peak > sensitivity){ registerStep(); }
 }
-function stopMotionListener(){
-  if(motionHandler){ window.removeEventListener("devicemotion", motionHandler); motionHandler=null; }
-}
-function startFallbackSteps(){
-  // demo fallback: count at slow cadence (only if user really wants to see movement)
+function startStepCounter(){
   if(stepTimer) return;
-  stepTimer = setInterval(()=> registerStep(), 1200);
+  // Fallback timer (for desktops) — counts only if sensor not active
+  stepTimer = setInterval(()=>{ if(!motionOn) registerStep(); }, 1200);
 }
-function stopFallbackSteps(){ if(stepTimer){ clearInterval(stepTimer); stepTimer=null; } }
-
+async function stopStepCounter(){
+  clearInterval(stepTimer); stepTimer=null;
+  await persistTodaySteps();
+  hydrateDashboard();
+  loadStepsThisWeek();
+}
 function registerStep(){
   stepCount++;
   setText("stepCount", stepCount);
   setText("stepsToday", stepCount);
-  updateStepsChartPoint(stepCount);
+  updateStepsChartPoint();
 }
-
-window.startStepCounter = function(){
-  $("sensorStatus").textContent="Starting…";
-  requestMotionPermissionIfNeeded();
-};
-window.stopStepCounter = async function(){
-  $("sensorStatus").textContent="Stopped";
-  stopMotionListener(); stopFallbackSteps();
-  if(!currentUser) return;
-
-  // Persist today's best
-  const ref = doc(db,"users",currentUser.email,"dailySteps",todayKey());
+async function persistTodaySteps(){
+  if(!currentEmail) return;
+  const ref = doc(db,"users",currentEmail,"dailySteps",todayKey());
   const snap = await getDoc(ref);
   const prev = snap.exists()? (snap.data().steps||0) : 0;
   await setDoc(ref,{ steps: Math.max(prev, stepCount), updatedAt: serverTimestamp() });
-  await hydrateDashboard();
-  await loadStepsThisWeek();
-};
-
-window.startCardio = function(type){
-  cardioType=type; cardioStart=new Date();
-  $("activeWorkout").innerHTML = `
-    <div class="kpi"><div>Active: <b>${type}</b></div>
-    <div id="cardioElapsed" class="big">0s</div></div>`;
-  cardioTimer && clearInterval(cardioTimer);
-  cardioTimer = setInterval(()=>{
-    const sec = Math.floor((Date.now()-cardioStart.getTime())/1000);
-    $("cardioElapsed").textContent = sec+"s";
-  },1000);
-};
-window.stopCardio = async function(){
-  if(!currentUser||!cardioStart) return;
-  const sec = Math.max(1, Math.floor((Date.now()-cardioStart.getTime())/1000));
-  const kcal = Math.round(sec/60 * (cardioType==="Cycling" ? 7 : cardioType==="Cross Trainer" ? 8 : 6));
-  await addDoc(collection(db,"users",currentUser.email,"sessions"),{
-    type:cardioType, durationSec:sec, kcal,
-    startedAt: cardioStart.toISOString(), endedAt: new Date().toISOString(), createdAt: serverTimestamp()
-  });
-  clearInterval(cardioTimer); cardioTimer=null; cardioStart=null; cardioType=null;
-  $("activeWorkout").innerHTML="";
-  await hydrateDashboard();
-  await loadCardioSessions();
-};
-async function loadCardioSessions(){
-  if(!currentUser) return;
-  const snap = await getDocs(collection(db,"users",currentUser.email,"sessions"));
-  const tbody = $("cardioTable").querySelector("tbody");
-  const rows = [];
-  snap.forEach(d=>{
-    const s = d.data();
-    rows.push(`<tr><td>${new Date(s.startedAt||Date.now()).toLocaleString()}</td><td>${s.type}</td><td>${Math.round((s.durationSec||0)/60)}m</td><td>${s.kcal||0}</td></tr>`);
-  });
-  tbody.innerHTML = rows.sort().join("");
 }
-
-/* ===========================
-   STEPS CHART (7-day)
-=========================== */
-let stepsChart;
-let measureChart;
-let chartColors = { grid:"#2a3140", text:"#cfd6e3" };
-
-function cssVar(name){ return getComputedStyle(document.body).getPropertyValue(name).trim(); }
-function initChartsTheme(){
-  chartColors.text = cssVar("--chart-text") || cssVar("--text") || "#e9eef7";
-  chartColors.grid = cssVar("--ring") || "#2a3140";
-}
-initChartsTheme();
-
-async function initStepsChart(){
-  const ctx = $("stepsChart")?.getContext("2d"); if(!ctx) return;
+function initStepsChart(){
+  const ctx = $("stepsChart").getContext("2d");
   stepsChart?.destroy?.();
   stepsChart = new Chart(ctx,{
     type:"line",
-    data:{ labels:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"], datasets:[{ label:"Steps", data:[0,0,0,0,0,0,0] }] },
-    options:{
-      responsive:true,
-      scales:{
-        x:{ grid:{ color:chartColors.grid }, ticks:{ color:chartColors.text } },
-        y:{ grid:{ color:chartColors.grid }, ticks:{ color:chartColors.text } },
-      },
-      plugins:{ legend:{ labels:{ color:chartColors.text } } }
-    }
-  });
-}
-function refreshCharts(){
-  if(stepsChart){
-    stepsChart.options.scales.x.grid.color = chartColors.grid;
-    stepsChart.options.scales.y.grid.color = chartColors.grid;
-    stepsChart.options.scales.x.ticks.color = chartColors.text;
-    stepsChart.options.scales.y.ticks.color = chartColors.text;
-    stepsChart.options.plugins.legend.labels.color = chartColors.text;
-    stepsChart.update();
-  }
-  if(measureChart){
-    measureChart.options.scales.x.ticks.color = chartColors.text;
-    measureChart.options.scales.y.ticks.color = chartColors.text;
-    measureChart.options.scales.x.grid.color = chartColors.grid;
-    measureChart.options.scales.y.grid.color = chartColors.grid;
-    measureChart.options.plugins.legend.labels.color = chartColors.text;
-    measureChart.update();
-  }
-}
-function weekdayIndex(d){ return (d.getDay()+6)%7; }
-function updateStepsChartPoint(val){
-  if(!stepsChart) return;
-  const idx = weekdayIndex(new Date());
-  stepsChart.data.datasets[0].data[idx] = val;
-  stepsChart.update();
-}
-async function loadStepsThisWeek(){
-  if(!currentUser || !stepsChart) return;
-  const arr = [0,0,0,0,0,0,0];
-  const now = new Date();
-  for(let i=0;i<7;i++){
-    const d = new Date(now); d.setDate(now.getDate() - ((6 - i)));
-    const key = ymd(d);
-    const snap = await getDoc(doc(db,"users",currentUser.email,"dailySteps",key));
-    const steps = snap.exists()? (snap.data().steps||0) : 0;
-    arr[(i+7)%7] = steps; // already Mon..Sun order in labels
-  }
-  stepsChart.data.datasets[0].data = arr;
-  stepsChart.update();
-  // preload today's stepCount
-  stepCount = arr[weekdayIndex(new Date())] || 0;
-  setText("stepCount", stepCount);
-  setText("stepsToday", stepCount);
-}
-
-/* ===========================
-   MEASUREMENTS
-=========================== */
-window.addMeasurement = async function(){
-  if(!currentUser) return alert("Login first");
-  const weight = parseFloat($("mWeight").value||"");
-  const bf     = parseFloat($("mBF").value||"");
-  const chest  = parseFloat($("mChest").value||"");
-  const waist  = parseFloat($("mWaist").value||"");
-  const date   = new Date().toISOString().slice(0,10);
-
-  if(!(weight>0)) return alert("Please enter weight");
-
-  await addDoc(collection(db,"users",currentUser.email,"measurements"),{
-    date, weight:weight||null, bf:bf||null, chest:chest||null, waist:waist||null, createdAt:serverTimestamp()
-  });
-
-  $("mWeight").value = $("mBF").value = $("mChest").value = $("mWaist").value = "";
-  await loadMeasurements();
-};
-
-async function loadMeasurements(){
-  if(!currentUser) return;
-  const tbody = $("measureTable").querySelector("tbody");
-  const snap = await getDocs(collection(db,"users",currentUser.email,"measurements"));
-  const data = [];
-  snap.forEach(d=>data.push(d.data()));
-  data.sort((a,b)=> (a.date>b.date?1:-1));
-
-  tbody.innerHTML = data.map(m=>`<tr><td>${m.date}</td><td>${m.weight??""}</td><td>${m.bf??""}</td><td>${m.chest??""}</td><td>${m.waist??""}</td></tr>`).join("");
-
-  // chart
-  const ctx = $("measureChart").getContext("2d");
-  measureChart?.destroy?.();
-  measureChart = new Chart(ctx,{
-    type:"line",
     data:{
-      labels: data.map(m=>m.date),
-      datasets: [
-        { label:"Weight (kg)", data:data.map(m=>m.weight||null) },
-        { label:"Body Fat %",  data:data.map(m=>m.bf||null) }
+      labels:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
+      datasets:[
+        {label:"Steps", data:[0,0,0,0,0,0,0], borderWidth:2, pointRadius:2}
       ]
     },
     options:{
       responsive:true,
-      interaction:{ mode:"index", intersect:false },
-      scales:{
-        x:{ grid:{ color:chartColors.grid }, ticks:{ color:chartColors.text } },
-        y:{ grid:{ color:chartColors.grid }, ticks:{ color:chartColors.text } },
-      },
-      plugins:{ legend:{ labels:{ color:chartColors.text } } }
+      plugins:{legend:{display:false}},
+      scales:{y:{ticks:{color: getComputedStyle(document.body).getPropertyValue('--text')}}}
     }
   });
 }
+function weekdayIndex(d){ return (d.getDay()+6)%7; } // Mon=0..Sun=6
+function updateStepsChartPoint(){
+  if(!stepsChart) return;
+  const idx = weekdayIndex(new Date());
+  stepsChart.data.datasets[0].data[idx] = stepCount;
+  stepsChart.update();
+}
+async function loadStepsThisWeek(){
+  if(!currentEmail || !stepsChart) return;
+  const arr = [0,0,0,0,0,0,0];
+  const now = new Date();
+  for(let i=0;i<7;i++){
+    const d = new Date(now); d.setDate(now.getDate() - ((6 - i)));
+    const snap = await getDoc(doc(db,"users",currentEmail,"dailySteps",keyOf(d)));
+    arr[i] = snap.exists()? (snap.data().steps||0) : 0;
+  }
+  stepsChart.data.datasets[0].data = arr;
+  stepsChart.update();
+  const t = arr[weekdayIndex(new Date())];
+  stepCount = t;
+  setText("stepCount", t);
+  setText("stepsToday", t);
+}
 
 /* ===========================
-   ADMIN AREA
+   PROGRESS (measurements)
+=========================== */
+let measureChart=null;
+function initMeasureChart(){
+  const ctx = $("measureChart").getContext("2d");
+  measureChart?.destroy?.();
+  measureChart = new Chart(ctx,{
+    type:"line",
+    data:{ labels:[], datasets:[
+      {label:"Weight", data:[], borderWidth:2, pointRadius:2},
+      {label:"Body Fat %", data:[], borderWidth:2, pointRadius:2},
+      {label:"Chest", data:[], borderWidth:2, pointRadius:2},
+      {label:"Waist", data:[], borderWidth:2, pointRadius:2}
+    ]},
+    options:{
+      responsive:true,
+      plugins:{legend:{labels:{color:getComputedStyle(document.body).getPropertyValue('--text')}}},
+      scales:{
+        x:{ticks:{color:getComputedStyle(document.body).getPropertyValue('--text')}},
+        y:{ticks:{color:getComputedStyle(document.body).getPropertyValue('--text')}}
+      }
+    }
+  });
+}
+async function addMeasurement(){
+  if(!currentEmail) return;
+  const w = parseFloat($("mWeight").value||"");
+  const bf = parseFloat($("mBF").value||"");
+  const ch = parseFloat($("mChest").value||"");
+  const ws = parseFloat($("mWaist").value||"");
+  if(!(w||bf||ch||ws)) return alert("Enter at least one measurement.");
+
+  await addDoc(collection(db,"users",currentEmail,"measurements"),{
+    date: new Date().toISOString(),
+    weight: isNaN(w)? null:w,
+    bf: isNaN(bf)? null:bf,
+    chest: isNaN(ch)? null:ch,
+    waist: isNaN(ws)? null:ws,
+    createdAt: serverTimestamp()
+  });
+
+  $("mWeight").value="";$("mBF").value="";$("mChest").value="";$("mWaist").value="";
+  loadMeasurements();
+}
+async function loadMeasurements(){
+  if(!currentEmail) return;
+  initMeasureChart();
+  const snap = await getDocs(collection(db,"users",currentEmail,"measurements"));
+  const rows=[], labels=[], w=[], bf=[], ch=[], ws=[];
+  const list=[];
+  snap.forEach(d=> list.push({...d.data(), _id:d.id}));
+  list.sort((a,b)=> (a.date||"").localeCompare(b.date||""));
+  list.forEach(m=>{
+    const dt = (m.date||"").slice(0,10);
+    rows.push(`<tr><td>${dt}</td><td>${m.weight??""}</td><td>${m.bf??""}</td><td>${m.chest??""}</td><td>${m.waist??""}</td></tr>`);
+    labels.push(dt);
+    w.push(m.weight??null); bf.push(m.bf??null); ch.push(m.chest??null); ws.push(m.waist??null);
+  });
+  $("measureTable").querySelector("tbody").innerHTML = rows.reverse().join("");
+
+  measureChart.data.labels = labels;
+  measureChart.data.datasets[0].data = w;
+  measureChart.data.datasets[1].data = bf;
+  measureChart.data.datasets[2].data = ch;
+  measureChart.data.datasets[3].data = ws;
+  measureChart.update();
+}
+
+/* ===========================
+   ADMIN — members / code / editor
 =========================== */
 $("btnGenCode").onclick = async ()=>{
   const name = $("memberNameInput").value.trim();
   if(!name) return alert("Enter member name");
   const code = (name.split(" ")[0]||name).toUpperCase()+"-"+Math.floor(10000+Math.random()*90000);
-  await setDoc(doc(db,"codes",code),{ name, used:false, createdAt:serverTimestamp() });
+  await setDoc(doc(db,"codes",code),{name,used:false,createdAt:serverTimestamp()});
   $("generatedCode").value = code;
-  $("lastCode").textContent = "Generated: " + code + " (saved)";
+  $("lastCode").textContent = "Generated code: "+code;
 };
-
 $("btnCopyCode").onclick = async ()=>{
-  const code = $("generatedCode").value.trim();
-  if(!code) return alert("No code to copy");
-  try{ await navigator.clipboard.writeText(code); alert("Copied!"); }catch{ alert("Copy failed"); }
+  const c = $("generatedCode").value.trim();
+  if(!c) return;
+  try{ await navigator.clipboard.writeText(c); alert("Code copied"); }catch{ alert("Copy failed"); }
 };
 
 async function renderMembers(){
   const snap = await getDocs(collection(db,"users"));
-  const list = $("membersList");
-  if(!list) return;
-  if(snap.empty){ list.innerHTML = "<p>No members yet.</p>"; return; }
-  list.innerHTML = snap.docs.map(d=>{
+  const list = [];
+  snap.forEach(d=>{
     const u = d.data();
+    list.push(`<div style="border:1px solid var(--ring);border-radius:12px;padding:10px;margin:8px 0;display:flex;justify-content:space-between;align-items:center;">
+      <div><b>${u.name||"-"}</b> • ${u.email}<br><small>Joined: ${u.joinDate||"-"}</small></div>
+      <div style="display:flex;gap:6px">
+        <button class="btn small" onclick="adminEdit('${d.id}')">Manage</button>
+        <button class="btn small ghost" onclick="adminSetJoin('${d.id}')">Set Join Date</button>
+      </div>
+    </div>`);
+  });
+  $("membersList").innerHTML = list.join("") || "<p>No members yet.</p>";
+}
+let _adminSelected = null;
+window.adminEdit = async function(email){
+  _adminSelected = email;
+  $("editMemberCard").style.display = "block";
+  const u = await getDoc(doc(db,"users",email));
+  $("editMemberTitle").textContent = "Edit: "+(u.data().name||email);
+  $("workoutPlanInput").value = u.data().coachPlan||"";
+  buildDietWeekEditor(u.data().dietWeek||{});
+  // Load tables
+  const ses = await getDocs(collection(db,"users",email,"sessions"));
+  const ms = await getDocs(collection(db,"users",email,"measurements"));
+  const srows=[], mrows=[];
+  const sList=[], mList=[];
+  ses.forEach(d=> sList.push(d.data()));
+  sList.sort((a,b)=> (a.startedAt||"").localeCompare(b.startedAt||""));
+  sList.forEach(s=>{
+    srows.push(`<tr><td>${(s.startedAt||"").slice(0,16).replace("T"," ")}</td><td>${s.type}</td><td>${Math.round((s.durationSec||0)/60)}m</td><td>${s.kcal||0}</td></tr>`);
+  });
+  ms.forEach(d=> mList.push(d.data()));
+  mList.sort((a,b)=> (a.date||"").localeCompare(b.date||""));
+  mList.forEach(m=>{
+    mrows.push(`<tr><td>${(m.date||"").slice(0,10)}</td><td>${m.weight??""}</td><td>${m.bf??""}</td><td>${m.chest??""}</td><td>${m.waist??""}</td></tr>`);
+  });
+  $("adminSessionsTable").querySelector("tbody").innerHTML = srows.reverse().join("");
+  $("adminMeasuresTable").querySelector("tbody").innerHTML = mrows.reverse().join("");
+};
+window.adminSetJoin = async function(email){
+  const dt = prompt("Enter join date (YYYY-MM-DD)");
+  if(!dt) return;
+  await updateDoc(doc(db,"users",email), { joinDate: dt });
+  alert("Join date saved.");
+  renderMembers();
+};
+
+function buildDietWeekEditor(existing={}){
+  const cont = $("dietWeek");
+  if(!cont) return;
+  const days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+  cont.innerHTML = days.map(d=>{
+    const v = existing[d]||{};
     return `
-      <div style="border:1px solid var(--ring);border-radius:12px;padding:10px;margin:8px 0;">
-        <div style="display:flex;justify-content:space-between;align-items:center;">
-          <div><b>${u.name||"-"}</b> • ${u.email}<br><small>Joined: ${u.joinDate||"-"}</small></div>
-          <div><button class="btn" onclick="adminEdit('${d.id}')">Manage</button></div>
-        </div>
+      <div class="card">
+        <h4 style="margin-bottom:6px">${d}</h4>
+        <input class="input" id="d_${d}_m" placeholder="Morning" value="${v.morning||""}">
+        <input class="input" id="d_${d}_a" placeholder="Afternoon" value="${v.afternoon||""}">
+        <input class="input" id="d_${d}_e" placeholder="Evening" value="${v.evening||""}">
       </div>
     `;
   }).join("");
 }
-
-let _adminSelected=null;
-window.adminEdit = async function(email){
-  _adminSelected = email;
-  $("editMemberCard").style.display="block";
-  $("editMemberTitle").textContent = "Edit: " + email;
-  const u = await getDoc(doc(db,"users",email));
-  if(u.exists()){
-    $("dietPlanInput").value = u.data().diet||"";
-    $("workoutPlanInput").value = u.data().workout||"";
-  }
-  // sessions
-  const sessSnap = await getDocs(collection(db,"users",email,"sessions"));
-  const sBody = $("adminSessionsTable").querySelector("tbody"); let sRows=[];
-  sessSnap.forEach(d=>{ const s=d.data(); sRows.push(`<tr><td>${new Date(s.startedAt||Date.now()).toLocaleString()}</td><td>${s.type}</td><td>${Math.round(s.durationSec/60)}m</td><td>${s.kcal}</td></tr>`); });
-  sBody.innerHTML = sRows.join("");
-
-  // measures
-  const mSnap = await getDocs(collection(db,"users",email,"measurements"));
-  const mBody = $("adminMeasuresTable").querySelector("tbody"); let mRows=[];
-  mSnap.forEach(d=>{ const m=d.data(); mRows.push(`<tr><td>${m.date}</td><td>${m.weight??""}</td><td>${m.bf??""}</td><td>${m.chest??""}</td><td>${m.waist??""}</td></tr>`); });
-  mBody.innerHTML = mRows.join("");
-};
-
-$("btnSavePlans").onclick = async ()=>{
+$("btnSaveDiet").onclick = async ()=>{
   if(!_adminSelected) return;
-  await updateDoc(doc(db,"users",_adminSelected),{
-    diet:$("dietPlanInput").value, workout:$("workoutPlanInput").value
+  const days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+  const week={};
+  days.forEach(d=>{
+    week[d] = {
+      morning: $("d_"+d+"_m").value.trim(),
+      afternoon: $("d_"+d+"_a").value.trim(),
+      evening: $("d_"+d+"_e").value.trim()
+    };
   });
-  alert("Plans updated");
-  await renderMembers();
+  await updateDoc(doc(db,"users",_adminSelected), { dietWeek: week });
+  alert("Diet saved.");
 };
-
-$("btnAdminLogout").onclick = ()=>{
-  showLogin();
-  $("adminUser").value = $("adminPass").value = "";
-  $("editMemberCard").style.display="none";
+$("btnSaveWorkoutPlan").onclick = async ()=>{
+  if(!_adminSelected) return;
+  await updateDoc(doc(db,"users",_adminSelected), { coachPlan: $("workoutPlanInput").value });
+  alert("Workout plan saved.");
 };
 
 /* ===========================
-   HELPERS
+   MEASUREMENTS LOAD ON TAB OPEN
 =========================== */
-function setText(id,val){ const el=$(id); if(el) el.textContent = val; }
-function todayKey(){ return ymd(new Date()); }
-function ymd(d){ const y=d.getFullYear(), m=("0"+(d.getMonth()+1)).slice(-2), day=("0"+d.getDate()).slice(-2); return `${y}-${m}-${day}`; }
-function clearAuthInputs(){
-  ["loginEmail","loginPassword","signupName","signupEmail","signupPassword","signupCode","fpEmail","fpCode","fpNewPass","adminUser","adminPass"].forEach(i=>{ const el=$(i); if(el) el.value=""; });
+document.querySelector('[data-tab="progress"]').addEventListener("click", loadMeasurements);
+
+/* ===========================
+   HELPERS: date keys
+=========================== */
+function todayKey(){ return keyOf(new Date()); }
+function keyOf(d){
+  const y=d.getFullYear(), m=("0"+(d.getMonth()+1)).slice(-2), day=("0"+d.getDate()).slice(-2);
+  return `${y}-${m}-${day}`;
+}
+function dateOffset(n){
+  const d=new Date(); d.setDate(d.getDate()+n); return d;
 }
 
 /* ===========================
-   BOOT: link buttons
+   STARTUP
 =========================== */
-document.querySelectorAll(".tabbtn").forEach(b=> b.addEventListener("click", ()=> switchTab(b.dataset.tab)));
+playLoginTyping();            // typing on login
+initMeasureChart();           // prepare graph
 </script>
 </body>
 </html>
